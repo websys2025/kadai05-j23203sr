@@ -6,18 +6,16 @@
 <body>
     <h1 id="msg">郵便番号API</h1>
     <form name="apiform"><p>
-        郵便番号：<input type="text" name="zipcode">
+        郵便番号：<input type="text" name="zipcode"　maxlength="7">
         <button type="button" id="btn1" onclick="zip_api(this.form)">実行</button>
     </p></form>
     
-    <div id="result">結果はここに表示</div>
+    <div id="result"></div>
     <script>
         async function zip_api(myForm) {
-            const endpoint = "https://zipcloud.ibsnet.co.jp/api/search";
+            const endpoint = "https://zipcloud.ibsnet.co.jp/api/search?zipcode=${zipcode}";
             // ここにコードを書く
-            btn1 = document.getElemenById("btn1")
-            btn1.onclick = async () => {
-                const data = await endpoint.text();
+            const data = await endpoint.text();
             // zipcloudのAPI呼び出して結果を表示する
                 document.getElementById("result").innerHTML = data; // 現状ではそのまま表示しているだけ
             }
